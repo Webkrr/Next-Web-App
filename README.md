@@ -1,65 +1,96 @@
-### Installation Command:
+# 🛒 Next.js Commerce Store (Sanity + Stripe)
 
-```bash
-npm i stripe use-shopping-cart next-sanity @stripe/stripe-js @sanity/image-url --force
-```
+A modern e-commerce web application built with **Next.js App Router**, **Sanity CMS**, and **Stripe**.  
+This project follows a **headless commerce architecture** where content, payments, and frontend are decoupled for scalability and flexibility.
 
-## Hero Images:
-https://github.com/ski043/nextjs-commerce-tutorial/tree/main/public/HeroImages
+---
 
-## Products:
+## 🚀 Tech Stack
 
-#Product One:
-Nike Air VaporMax 2023 Flyknit
+### Frontend / Server
+- Next.js 13+ (App Router)
+- React
+- TypeScript
+- Tailwind CSS
+- ShadCN UI
 
-Price: 200
-
-Category: Men
-
-description:
-Elevate your sneaker game to new heights with the latest evolution of the iconic Air VaporMax series. The 2023 Flyknit combines cutting-edge technology, exceptional comfort, and bold style. Its innovative Flyknit upper offers a second-skin fit, ensuring a snug yet breathable feel with every step. The renowned VaporMax sole unit delivers unparalleled cushioning and responsiveness, providing a smooth ride that's perfect for both athletic performance and street-style fashion.
-
-images: https://github.com/ski043/nextjs-commerce-tutorial/tree/main/public/ProductOne
+### Backend (Headless)
+- Sanity CMS (content & products)
+- Stripe (payments)
 
 
-#Product Two:
-Nike Sportswear Phoenix Fleece
+## 🧠 Architecture Overview
 
-Price: 35
+Next.js (UI + Server Logic)
+|
+|-- GROQ Queries
+↓
+Sanity CMS (Database + Admin UI)
+|
+|-- Checkout
+↓
+Stripe (Payments)
 
-Category: Women
+## 📁 Project Structure
 
-Description:
-Crafted with a blend of warmth and style, the Phoenix Fleece is a versatile addition to your wardrobe. Its soft and cozy fleece fabric offers a perfect balance of comfort and durability, making it ideal for cool days and relaxed outings. With a modern, sporty design and the iconic Nike Swoosh, this fleece adds a touch of urban flair to your look. Whether you're hitting the gym or hanging out with friends, the Nike Sportswear Phoenix Fleece keeps you both cozy and stylish. Elevate your everyday wear with this classic piece of Nike Sportswear.
+├── app/ # Next.js app router
+│ ├── page.tsx # Home page
+│ ├── [category]/ # Category pages
+│ ├── product/[slug]/ # Product detail pages
+│ └── stripe/ # Checkout success/error
+│
+├── sanity/ # Sanity Studio (admin backend)
+│ ├── schemas/ # Product & category schemas
+│ └── sanity.config.ts # Sanity configuration
+│
+├── components/ # Shared UI components
+├── lib/ # Utility functions
+└── public/ # Static assets
 
-images: https://github.com/ski043/nextjs-commerce-tutorial/tree/main/public/ProductTwo
 
-#Product Three:
-Nike Air Force 1 '07
 
-Price: 85
+🛠️ Installation
+npm install --legacy-peer-deps
 
-Category: Teens
+▶️ Running the Project
+1. Start Next.js frontend
+npm run dev
 
-Description:
-The Nike Air Force 1 '07 represents a legend in the world of sneakers. With a design that transcends generations, this classic silhouette has remained a symbol of street-style culture for over three decades. Its white leather upper and clean lines are a canvas for self-expression, allowing you to pair it with any outfit, from casual to chic.
 
-Images: https://github.com/ski043/nextjs-commerce-tutorial/tree/main/public/ProductThree
+Runs at:
 
-#Product Four
-Nike Windrunner
+http://localhost:3000
 
-Price: 200
+2. Start Sanity Studio (backend CMS)
+cd sanity
+npm install
+npm run dev
 
-Category: Men
 
-Description:
-The Nike Windrunner is more than just a jacket; it's a symbol of enduring style and performance. With a design that has stood the test of time, this lightweight and versatile outerwear piece is your go-to choice for brisk mornings, breezy afternoons, and everything in between. Its distinctive chevron design on the chest pays homage to its heritage, while the modern materials and construction ensure it's ready for the demands of today.
+Runs at:
 
-Images: https://github.com/ski043/nextjs-commerce-tutorial/tree/main/public/ProductFour
+http://localhost:3333
 
-## Deploy on Vercel
+🧪 Creating Data
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open Sanity Studio and create:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Categories
+
+Products
+
+Hero images
+
+The frontend will update automatically.
+
+💳 Stripe Payments
+
+Stripe is used for checkout flow:
+
+Test mode only
+
+No real payments
+
+Use Stripe test cards
+
+If you don’t need payments, you can run the app without Stripe keys (just don’t click checkout).
